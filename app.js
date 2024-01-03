@@ -116,19 +116,20 @@ function calculateResult() {
 
 function evaluateExpression(expression) {
   const operators = /[+\-\*\/\%]/;
-  const tokens = expression.match(/[+\-\*\/\%]|\d+(\.\d+)?/g);
+  const tokens = expression.match(/[+\-\*\/\%]|\d+(\.\d+)?|\(|\)/g);
 
   if (!tokens || tokens.length < 3) {
     throw new Error("Invalid expression");
   }
 
-   // BODMAS logic
-   const precedence = {
+  const precedence = {
     '+': 1,
     '-': 1,
     '*': 2,
     '/': 2,
     '%': 2,
+    '(': 0,
+    ')': 3
   };
 
   const isHigherPrecedence = (op1, op2) => precedence[op1] >= precedence[op2];
@@ -138,12 +139,21 @@ function evaluateExpression(expression) {
 
   for (let i = 0; i < tokens.length; i++) {
     const token = tokens[i];
-    
-    if (!operators.test(token)) {
-      // Operand, push to output queue
+
+    if (!operators.test(token) && token !== '(' && token !== ')') {
       outputQueue.push(parseFloat(token));
+    } else if (token === '(') {
+      operatorStack.push(token);
+    } else if (token === ')') {
+      while (operatorStack.length > 0 && operatorStack[operatorStack.length - 1] !== '(') {
+        outputQueue.push(operatorStack.pop());
+      }
+      operatorStack.pop(); // Pop the left parenthesis
+    } else if (token === '-' && (i === 0 || operators.test(tokens[i - 1]) || tokens[i - 1] === '(')) {
+      // Handle negative numbers
+      outputQueue.push(parseFloat(tokens[i] + tokens[i + 1]));
+      i++; // Skip the next token (the number after '-')
     } else {
-      // Operator
       while (
         operatorStack.length > 0 &&
         isHigherPrecedence(operatorStack[operatorStack.length - 1], token)
@@ -191,8 +201,14 @@ function evaluateExpression(expression) {
     }
   }
 
+  if (resultStack.length !== 1) {
+    throw new Error("Invalid expression");
+  }
+
   return resultStack.pop();
 }
+
+
 
 function updateScreen() {
   screen.value = screenValue;

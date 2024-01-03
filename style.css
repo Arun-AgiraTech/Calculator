@@ -52,7 +52,7 @@ input{
     font-size: 40px;
     background: whitesmoke;
     cursor: pointer;
-    width: 102px;
+    width: 92px;
     height: 90px;
     margin: 6px;
 }
@@ -64,14 +64,14 @@ input:hover{
 .calculator {
     border: 4px solid lightgray;
     background-color: white;
-    padding: 23px;
+    padding: 43px;
     border-radius: 22px;
     display: inline-block;
     box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .2);
 
 }
 
-h1 {
+#heading {
     font-size: 40px;
     font-family: 'Nabla';
     font-style: normal;
