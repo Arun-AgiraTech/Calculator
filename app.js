@@ -4,14 +4,14 @@ let buttons = document.querySelectorAll("input[type='button']");
 let screenValue = "";
 let flag = false;
 let eventFlag = false;
-let id = document.getElementById("screen")
+let id = document.getElementById("screen");
 
 // Load calculation history from localStorage when the page loads
 const history = JSON.parse(localStorage.getItem('calculationHistory')) ?? [];
 
 
 window.onload = () => {
-  id.hidden = true;
+  id.style.visibility = "hidden";
   eventFlag = true;
 
 };
@@ -249,9 +249,9 @@ function deleteHistory(){
 
 function changeAnimation() {
   eventFlag = false;
-  id.hidden = false;
+  id.style.visibility = "visible";
   const originalFont = window.getComputedStyle(screen).fontFamily;
-  screen.value = " casio      "
+  screen.value = " casio     "
   screen.style.fontFamily = "pixel point";  
 
   setTimeout(() => {
@@ -264,7 +264,7 @@ function changeAnimation() {
 function secondAnimation() {
   const originalFont = window.getComputedStyle(screen).fontFamily;
 
-  screen.value = "CASIO      "
+  screen.value = "CASIO     "
   screen.style.fontFamily = "pixel point";
   eventFlag = true;
   deleteHistory();
@@ -273,7 +273,7 @@ function secondAnimation() {
     screen.value = screenValue;
     flag = false;
     screen.style.fontFamily = originalFont;
-    id.hidden = true;
+    id.style.visibility = "hidden";
     clearScreen();
 
   }, 2000);

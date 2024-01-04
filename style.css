@@ -28,10 +28,10 @@ img {
 #screen{
     border-radius: 21px;
     text-align: right;
-    border: 5px solid #244624;
-    font-size: 60px;
-    height: 65px;
-    width: 456px;
+    border: 5px ridge black;
+    font-size: 50px;
+    height: 55px;
+    width: 366px;
     font-family:'digital-clock-font';
     background-color: lightgray;
 }
@@ -42,18 +42,18 @@ img {
 }
 
 .row{
-    display:block;
+    display:inline-flex;
 }
 
 input{
     border-radius: 20px;
     border-width: 1px;
     border-color: gold;
-    font-size: 40px;
+    font-size: 30px;
     background: whitesmoke;
     cursor: pointer;
-    width: 92px;
-    height: 90px;
+    width: 82px;
+    height: 75px;
     margin: 6px;
 }
 
@@ -64,11 +64,21 @@ input:hover{
 .calculator {
     border: 4px solid lightgray;
     background-color: white;
-    padding: 43px;
+    padding: 23px;
     border-radius: 22px;
     display: inline-block;
     box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .2);
 
+}
+
+#bracket{
+    display: inline-flex;
+    align-items: center;
+    padding-top: 10px;
+}
+#brc{
+    width: 179px;
+    height: 55px;
 }
 
 #heading {
