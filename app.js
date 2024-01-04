@@ -5,6 +5,10 @@ let screenValue = "";
 let flag = false;
 let eventFlag = false;
 let id = document.getElementById("screen");
+var x = document.getElementById("myAudio1");
+var y = document.getElementById("myAudio2");
+var b = document.getElementById("myAudio3");
+var z = document.getElementById("myAudio4");
 
 // Load calculation history from localStorage when the page loads
 const history = JSON.parse(localStorage.getItem('calculationHistory')) ?? [];
@@ -34,8 +38,10 @@ document.addEventListener("keydown", (e) => {
 });
 
 function handleButtonClick(buttonText) {
+  if(buttonText!="ON"){
+    playButton();
+  }
   console.log("Button text is ", buttonText);
-
   if (buttonText == "X") {
     buttonText = "*"; 
     screenValue += buttonText;
@@ -63,6 +69,9 @@ function handleButtonClick(buttonText) {
 }
 
 function handleKeyDown(key) {
+  if(key!="v"){
+    playButton();
+  }
   console.log("Key pressed is ", key);
   if (/^\d$|^[\+\-\*\/\%]$/.test(key)) {
     screenValue += key;
@@ -106,6 +115,7 @@ function calculateResult() {
       screenValue = "";
     }
   } catch (error) {
+    playError();
     console.error("Error during calculation:", error.message);
     screen.value = "Error";
     screenValue = "";
@@ -250,6 +260,7 @@ function deleteHistory(){
 function changeAnimation() {
   eventFlag = false;
   id.style.visibility = "visible";
+  playSound1();
   const originalFont = window.getComputedStyle(screen).fontFamily;
   screen.value = " casio     "
   screen.style.fontFamily = "pixel point";  
@@ -258,12 +269,12 @@ function changeAnimation() {
     screen.value = screenValue;
     flag = true;
     screen.style.fontFamily = originalFont;
-  }, 2000);
+  }, 3000);
 }
 
 function secondAnimation() {
   const originalFont = window.getComputedStyle(screen).fontFamily;
-
+  playSound2();
   screen.value = "CASIO     "
   screen.style.fontFamily = "pixel point";
   eventFlag = true;
@@ -277,6 +288,22 @@ function secondAnimation() {
     clearScreen();
 
   }, 2000);
+}
+
+function playSound1(){
+  x.play();
+}
+
+function playSound2(){
+  y.play();
+}
+
+function playError(){
+  z.play();
+}
+
+function playButton(){
+  b.play();
 }
 
 
