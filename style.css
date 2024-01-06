@@ -9,6 +9,15 @@
     font-family: 'pixel point';
     src: url('pixel-point.ttf') 
   }   
+  @font-face {
+    font-family: 'led-counter-7';
+    src: url('led-counter-7.regular.ttf');
+  }
+
+  @font-face {
+    font-family: 'casio-fx-7800gc-regular';
+    src: url('casio-fx-7800gc-regular.ttf');
+  }
 
 .container{
     text-align: center;
@@ -32,7 +41,7 @@ img {
     font-size: 50px;
     height: 55px;
     width: 366px;
-    font-family:'digital-clock-font';
+    font-family:'led-counter-7';
     background-color: lightgray;
 }
 
@@ -85,6 +94,10 @@ input:hover{
     font-size: 40px;
     font-family: 'Nabla';
     font-style: normal;
+}
+
+p{
+    font-family: 'casio-fx-7800gc-regular';
 }
 
 
